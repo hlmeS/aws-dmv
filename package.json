@@ -2,7 +2,7 @@
   "name": "aws-dmv",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "handler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +13,7 @@
     "aws-sdk": "^2.418.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "serverless-http": "^1.9.1"
+    "serverless-http": "^1.9.1",
+    "uuid": "^3.3.2"
   }
 }

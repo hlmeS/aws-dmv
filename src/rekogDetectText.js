@@ -20,7 +20,7 @@ function rekogDetectText({bucket, key}) {
       if(err) {
         return rej(new Error(err));
       } 
-        console.log(data);
+        // console.log(data);
         return res(data);
       });
   });

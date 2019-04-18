@@ -12,6 +12,17 @@ function textFromImage(event, context, callback) {
     key: key
   }
   // // call rekognition
-  const result = rekogDetectText(s3config);
-  console.log(result);
+  // const resultPromise = new Promise((res, rej) => {
+  //   return res(rekogDetectText(s3config));
+  // })
+  
+  
+  const resultPromise = rekogDetectText(s3config); // returns a promise
+  resultPromise.then( value => {
+    // save to database
+    console.log(value);
+  })
+
+
+  callback(null, "success");
 };

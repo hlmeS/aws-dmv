@@ -1,5 +1,6 @@
 // takes Identification card from S3 and passes to rekog. console log returned data. 
 const rekogDetectText = require('../src/rekogDetectText')
+const saveToDynamo = require('../src/saveToDynamo')
 module.exports = textFromImage
 
 function textFromImage(event, context, callback) {
@@ -20,9 +21,25 @@ function textFromImage(event, context, callback) {
   const resultPromise = rekogDetectText(s3config); // returns a promise
   resultPromise.then( value => {
     // save to database
-    console.log(value);
+    const fields = value.TextDetections;
+    const doc = {
+      lastName: findById(31),
+      firstName: findById(29),
+      expiration: findById(25),
+      birthday: findById(41),
+    }
+    // console.log(doc)
+    saveToDynamo(doc);
+
+    function findById(fieldId) {
+      return fields.find((val) => {
+        return val.Id === fieldId;
+      }).DetectedText
+    }
   })
 
 
   callback(null, "success");
+
+
 };

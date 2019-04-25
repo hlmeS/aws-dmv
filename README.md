@@ -267,3 +267,52 @@ We call dynamodb.putItem with these params to insert a new record.
 
 To deploy our newly created project we will call
 `sls deploy`
+
+## Usage
+After deploying, an API endpoint should get output to your console. Visit that to go to the website you created. Upload your image. Your lambda function should get fired off. 
+Visit dynamoDB to see your new record. 
+
+## Testing
+In lambda, you can configure test events to mimic a real objectCreated event. This will save you time in development and give you instant feedback. 
+1. Upload an image to your S3 bucket that you will be listening at
+2. Go to your lambda function in the AWS console
+3. On the top of the page, select 'configure test event'
+4. Save this test event 
+```
+{
+  "Records": [
+    {
+      "eventVersion": "2.1",
+      "eventSource": "aws:s3",
+      "awsRegion": "us-west-2",
+      "eventTime": "1970-01-01T00:00:00.000Z",
+      "eventName": "ObjectCreated:Put",
+      "userIdentity": {
+        "principalId": "AIDAJDPLRKLG7UEXAMPLE"
+      },
+      "requestParameters": {
+        "sourceIPAddress": "127.0.0.1"
+      },
+      "responseElements": {
+        "x-amz-request-id": "C3D13FE58DE4C810",
+        "x-amz-id-2": "FMyUVURIY8/IgAtTv8xRjskZQpcIZ9KG4V5Wp6S7S/JRWeUWerMUE5JgHvANOjpD"
+      },
+      "s3": {
+        "s3SchemaVersion": "1.0",
+        "configurationId": "testConfigRule",
+        "bucket": {
+          "name": "YOUR_BUCKET_NAME",
+          "ownerIdentity": {
+            "principalId": "4bba330f2a92c0b54d2e7b31190489b625e4e82b84197cceb874ac6516245da5"
+          },
+          "arn": "YOUR_BUCKET_ARN"
+        },
+        "object": {
+          "key": "YOUR_IMAGE.jpg"
+        }
+      }
+    }
+  ]
+}
+```
+click save and then test to see your glorious function in action.

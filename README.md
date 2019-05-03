@@ -316,3 +316,9 @@ In lambda, you can configure test events to mimic a real objectCreated event. Th
 }
 ```
 click save and then test to see your glorious function in action.
+
+# Teardown
+Steps to stop all processes adn remove the project
+
+- from the terminal in the root of your project run 
+`$ serverless remove` 

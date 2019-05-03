@@ -318,7 +318,7 @@ In lambda, you can configure test events to mimic a real objectCreated event. Th
 click save and then test to see your glorious function in action.
 
 # Teardown
-Steps to stop all processes adn remove the project
+Steps to stop all processes and remove the project from AWS
 
 - from the terminal in the root of your project run 
 `$ serverless remove` 
